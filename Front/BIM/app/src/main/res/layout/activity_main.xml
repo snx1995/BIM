@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/colorGrey"
+        android:id="@+id/main_recycler"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        style="?buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/main_clear_message"
+            style="?buttonBarButtonStyle"
+            android:text="@string/clear_message"
+            android:textColor="@color/colorWhite"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/main_address_book"
+            style="?buttonBarButtonStyle"
+            android:text="@string/address_book"
+            android:textColor="@color/colorWhite"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/main_search"
+            style="?buttonBarButtonStyle"
+            android:text="@string/search"
+            android:textColor="@color/colorWhite"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

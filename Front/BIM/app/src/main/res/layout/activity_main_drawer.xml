@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemes.android.com/apk/res-auto"
+    android:id="@+id/main_drawer_layout"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            app:navigationIcon="@string/title_bar_back"
+            android:fitsSystemWindows="true"
+            android:id="@+id/main_drawer_tool_bar"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/main_swipe_refresh_layout"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:background="@color/colorGrey"
+                android:id="@+id/main_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+        <LinearLayout
+            android:background="@color/colorPrimary"
+            style="?buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/main_clear_message"
+                style="?buttonBarButtonStyle"
+                android:text="@string/clear_message"
+                android:textColor="@color/colorWhite"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/main_address_book"
+                style="?buttonBarButtonStyle"
+                android:text="@string/address_book"
+                android:textColor="@color/colorWhite"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/main_search"
+                style="?buttonBarButtonStyle"
+                android:text="@string/search"
+                android:textColor="@color/colorWhite"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:background="@color/colorWhite"
+        android:layout_gravity="start"
+        android:text="@string/text_tmp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</android.support.v4.widget.DrawerLayout>

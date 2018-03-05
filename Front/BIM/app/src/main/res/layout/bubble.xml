@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/bubble_receive_layout"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/bubble_receiver_image"
+            android:src="@drawable/receive_tmp"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:id="@+id/bubble_receiver_text"
+            android:padding="25dp"
+            android:text="@string/text_tmp_long"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/receive_bubble2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bubble_send_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/bubble_sender_text"
+            android:padding="20dp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/send_bubble2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_tmp" />
+
+        <ImageView
+            android:id="@+id/bubble_sender_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/send_tmp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/colorWhite"
+        android:layout_marginTop="3dp"
+        android:id="@+id/bubble_history_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <ImageView
+            android:padding="5dp"
+            android:id="@+id/bubble_history_image"
+            android:src="@drawable/receive_tmp"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/bubble_history_name"
+                android:text="@string/text_tmp"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp" />
+            
+            <TextView
+                android:id="@+id/bubble_history_text"
+                android:text="@string/text_tmp"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp" />
+            
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

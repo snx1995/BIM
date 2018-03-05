@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <top.banyaoqiang.www.bim.TitleBar
+        android:id="@+id/info_detail_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/info_detail_image"
+                android:layout_margin="5dp"
+                android:src="@drawable/receive_tmp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+            <TextView
+                android:id="@+id/info_detail_name"
+                android:layout_marginBottom="5dp"
+                android:text="@string/text_tmp"
+                android:gravity="center_vertical"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:padding="5dp"
+                android:background="@color/colorWhite"
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:text="@string/bim_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:textSize="18sp"
+                    android:id="@+id/info_detail_id"
+                    android:gravity="center_vertical"
+                    android:text="@string/text_tmp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:padding="5dp"
+                android:background="@color/colorWhite"
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:textSize="18sp"
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:text="@string/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:textSize="18sp"
+                    android:id="@+id/info_detail_email"
+                    android:gravity="center_vertical"
+                    android:text="@string/text_tmp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/colorWhite"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/age"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/info_detail_age"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/text_tmp"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/colorWhite"
+                android:padding="5dp"
+                android:textSize="18sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/sex"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/info_detail_sex"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/text_tmp"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:layout_marginTop="3dp"
+                android:text="@string/brief_introduce"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:textSize="18sp"
+                android:minHeight="100dp"
+                android:layout_marginTop="3dp"
+                android:id="@+id/info_detail_introduction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:padding="20dp"
+                android:text="@string/text_tmp_long" />
+
+            <Button
+                android:id="@+id/info_detail_send_message"
+                android:text="@string/send_message"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:layout_margin="10dp"
+                android:background="@color/colorBlueLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/info_detail_add_friend"
+                android:text="@string/add_friend"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:layout_margin="10dp"
+                android:background="@color/colorGreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/info_detail_delete_friend"
+                android:text="@string/delete_friend"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:layout_margin="10dp"
+                android:background="@color/colorWarn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

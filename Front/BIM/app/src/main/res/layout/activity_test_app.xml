@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/test_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/test_web_activity"
+        android:background="@color/colorBlueLight"
+        android:layout_marginTop="10dp"
+        android:text="@string/web_activity"
+        android:textSize="18sp"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/test_launcher_activity"
+        android:background="@color/colorBlueLight"
+        android:layout_marginTop="10dp"
+        android:text="@string/launcher_activity"
+        android:textSize="18sp"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/test_login_activity"
+        android:background="@color/colorBlueLight"
+        android:layout_marginTop="10dp"
+        android:text="@string/login_activity"
+        android:textSize="18sp"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/test_main_activity"
+        android:background="@color/colorBlueLight"
+        android:layout_marginTop="10dp"
+        android:text="@string/main_activity"
+        android:textSize="18sp"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/test_address_book_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorBlueLight"
+        android:text="@string/address_book_activity"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/test_message_activity"
+        android:background="@color/colorBlueLight"
+        android:layout_marginTop="10dp"
+        android:text="@string/message_activity"
+        android:textSize="18sp"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/test_find_friend"
+        android:background="@color/colorBlueLight"
+        android:layout_marginTop="10dp"
+        android:text="@string/find_friend_activity"
+        android:textSize="18sp"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/test_info_detail_activity"
+        android:background="@color/colorBlueLight"
+        android:layout_marginTop="10dp"
+        android:text="@string/info_detail_activity"
+        android:textSize="18sp"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+
+</LinearLayout>
