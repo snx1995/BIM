@@ -6,30 +6,29 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class LauncherActivity extends AppCompatActivity {
+    static final String USER_INFO_FILE_NAME = "b1392732";
+    static final String TAG = "Bim_debug";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+        Intent intent;
 
-        String TAG = "Bim_debug";
+        String userInfo =
+                BimFile.readFromFile(this, USER_INFO_FILE_NAME);
 
-        BimUser user = new BimUser("Tom",1234,R.drawable.ic_launcher_background);
-        BimMsgList list = new BimMsgList(user);
-        for(int i=0;i<10;i++){
-            list.add(new BimMsg(user,user,"Hello" + i,BimMsg.TYPE_SEND));
+        Log.d(TAG, "onCreate: readFromFile: " + userInfo);
+        BimUser user = new BimUser();
+        Boolean result = user.fromJSONString(userInfo);
+        if(result) {
+            intent = new Intent(this, MainActivity.class);
+            user.putToIntent(intent);
+            startActivity(intent);
+        } else {
+            intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         }
-
-        String listJson = list.toJSONString();
-
-        Log.d(TAG, "onCreate: " + listJson);
-        Log.d(TAG, "onCreate: " + list.toJSONString());
-
-        BimMsgList list2 = new BimMsgList();
-        list2.fromJSONString(listJson);
-        Log.d(TAG, "onCreate: " + list2.toJSONString());
-
-        Intent intent = new Intent(LauncherActivity.this,MessageActivity.class);
-        startActivity(intent);
+        finish();
     }
 }

@@ -24,15 +24,16 @@ public abstract class BimData {
         return this.toJSONObject().toString();
     }
     public abstract JSONObject toJSONObject();
-    public void fromJSONString(String json){
+    public Boolean fromJSONString(String json){
         try{
             this.fromJSONObject(new JSONObject(json));
         }catch (Exception e){
             Log.d(TAG, "fromJSONString: " + e.getMessage());
+            return false;
         }
-
+        return true;
     }
-    public abstract void fromJSONObject(JSONObject json);
+    public abstract Boolean fromJSONObject(JSONObject json);
 }
 
 class BimUser extends BimData{
@@ -99,7 +100,7 @@ class BimUser extends BimData{
     }
 
     @Override
-    public void fromJSONObject(JSONObject json) {
+    public Boolean fromJSONObject(JSONObject json) {
         try{
             name = json.getString("name");
             id = json.getInt("id");
@@ -107,7 +108,9 @@ class BimUser extends BimData{
             type = json.getInt("type");
         }catch (Exception e){
             Log.d(TAG, "BimUser.fromJSONObject: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 
     void putToIntent(Intent intent){
@@ -213,7 +216,7 @@ class BimUserDetail extends BimData{
     }
 
     @Override
-    public void fromJSONObject(JSONObject json) {
+    public Boolean fromJSONObject(JSONObject json) {
         try{
             name = json.getString(NAME);
             id = json.getInt(ID);
@@ -225,7 +228,9 @@ class BimUserDetail extends BimData{
             type = json.getInt(TYPE);
         }catch (Exception e){
             Log.d(TAG, "BimUserDetail.fromJSONObject: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 }
 
@@ -246,7 +251,7 @@ class BimUserDetailList extends BimData {
         return jsonArray;
     }
 
-    public void fromJSONArray(JSONArray jsonArray){
+    public Boolean fromJSONArray(JSONArray jsonArray){
         userDetailList = new ArrayList<>();
         try{
             for(int i=0;i<jsonArray.length();i++){
@@ -256,7 +261,9 @@ class BimUserDetailList extends BimData {
             }
         }catch (Exception e){
             Log.d(TAG, "BimUserDetailList.fromJSONArray: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 
     public int size(){
@@ -273,13 +280,15 @@ class BimUserDetailList extends BimData {
     }
 
     @Override
-    public void fromJSONObject(JSONObject json) {
+    public Boolean fromJSONObject(JSONObject json) {
         try{
             JSONArray jsonArray = json.getJSONArray("friends");
             fromJSONArray(jsonArray);
         }catch (Exception e){
             Log.d(TAG, "BimUserDetailList.fromJSONObject: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 }
 
@@ -366,7 +375,7 @@ class BimMsg extends BimData{
     }
 
     @Override
-    public void fromJSONObject(JSONObject json) {
+    public Boolean fromJSONObject(JSONObject json) {
         if(sender == null) sender = new BimUser();
         if(receiver == null) receiver = new BimUser();
         try{
@@ -377,7 +386,9 @@ class BimMsg extends BimData{
             date = new Date(json.getString("date"));
         }catch (Exception e){
             Log.d(TAG, "BimMsg.fromJSONObject: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 }
 
@@ -438,7 +449,7 @@ class BimMsgList extends BimData implements Iterator<BimMsg>{
     }
 
     @Override
-    public void fromJSONObject(JSONObject json) {
+    public Boolean fromJSONObject(JSONObject json) {
         if(user == null) user = new BimUser();
         try{
             user.fromJSONObject(json.getJSONObject("user"));
@@ -451,7 +462,9 @@ class BimMsgList extends BimData implements Iterator<BimMsg>{
             }
         }catch (Exception e){
             Log.d(TAG, "BimMsgList.fromJSONObject: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 
     void initForDebug(){
@@ -568,7 +581,7 @@ class BimUserList extends BimData{
     }
 
     @Override
-    public void fromJSONObject(JSONObject json) {
+    public Boolean fromJSONObject(JSONObject json) {
         if(user == null) user = new BimUser();
         try{
             user.fromJSONObject(json.getJSONObject("user"));
@@ -580,7 +593,9 @@ class BimUserList extends BimData{
             }
         }catch (Exception e){
             Log.d(TAG, "BimUserList fromJSONObject: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 
     void initForDebug(){

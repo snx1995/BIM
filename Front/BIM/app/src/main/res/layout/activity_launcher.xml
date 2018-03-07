@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context="top.banyaoqiang.www.bim.LauncherActivity">
 
+    <ImageView
+        android:src="@drawable/bg2"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </android.support.constraint.ConstraintLayout>
