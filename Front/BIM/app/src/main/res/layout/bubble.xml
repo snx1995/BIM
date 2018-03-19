@@ -77,6 +77,7 @@
             android:layout_height="match_parent">
             
             <TextView
+                android:textColor="@color/colorBlack"
                 android:textStyle="bold"
                 android:id="@+id/bubble_history_name"
                 android:text="@string/text_tmp"
@@ -86,6 +87,7 @@
                 android:layout_height="0dp" />
             
             <TextView
+                android:textColor="@color/colorBlack"
                 android:id="@+id/bubble_history_text"
                 android:text="@string/text_tmp"
                 android:gravity="center_vertical"

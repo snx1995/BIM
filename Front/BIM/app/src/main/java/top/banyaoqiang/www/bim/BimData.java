@@ -1,6 +1,8 @@
 package top.banyaoqiang.www.bim;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -125,6 +127,20 @@ class BimUser extends BimData{
         id = intent.getIntExtra("id", -1);
         image = intent.getIntExtra("image", -1);
         type = intent.getIntExtra("type", -1);
+    }
+
+    void readFromDatabase(SQLiteDatabase db, String table, int id){
+        Cursor cursor = db.rawQuery("seletc * from addressbook where friend id=" + id, null);
+        cursor.moveToNext();
+        name = cursor.getString(cursor.getColumnIndex("name"));
+        this.id = id;
+        image = cursor.getInt(cursor.getColumnIndex("image"));
+        type = cursor.getInt(cursor.getColumnIndex("type"));
+        cursor.close();
+    }
+
+    void readFromDatabase(Cursor cursor){
+
     }
 }
 
@@ -293,10 +309,17 @@ class BimUserDetailList extends BimData {
 }
 
 class BimMsg extends BimData{
-    public static final int TYPE_SEND = 0;
-    public static final int TYPE_RECEIVE =1;
-    public static final int TYPE_HISTORY = 2;
+    static final int TYPE_SEND = 0;
+    static final int TYPE_RECEIVE =1;
+    static final int TYPE_HISTORY = 2;
+    static final int READ = 4;
+    static final int UNREAD = 5;
 
+    private boolean inDB = false;
+    private BimUser host;
+    private BimUser friend;
+    private int id;
+    private int hasBeenRead;
     private BimUser sender;
     private BimUser receiver;
     private String text;
@@ -311,6 +334,8 @@ class BimMsg extends BimData{
     }
 
     public BimMsg(BimUser sender, BimUser receiver, String text, int type) {
+        host = sender;
+        friend =receiver;
         this.sender = sender;
         this.receiver = receiver;
         this.text = text;
@@ -324,6 +349,42 @@ class BimMsg extends BimData{
         this.text = text;
         this.date = date;
         this.type = type;
+    }
+
+    void saveToDatabase(SQLiteDatabase db){
+        if(!inDB)
+            db.execSQL("insert into message (host, friend, text, read, " +
+                "type, date)values(?, ?, ?, ?, ?, ?)", new String[]{host.getStringId(),
+                friend.getStringId(), text, hasBeenRead + "", type + "", date.toString()});
+        else{
+            db.execSQL("update message set host=?,friend=?,text=?,read=?,type=?,date=? where id = ?",
+                    new String[]{id+"", host.getStringId(), friend.getStringId(), text, hasBeenRead+"",
+                    type+"", date.toString()});
+        }
+    }
+
+    void readFromDatabase(Cursor cursor){
+        id = cursor.getInt(0);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getHasBeenRead() {
+        return hasBeenRead;
+    }
+
+    public void setHasBeenRead(int hasBennRead) {
+        this.hasBeenRead = hasBennRead;
+    }
+
+    void read(Boolean read){
+        hasBeenRead = read? READ:UNREAD;
     }
 
     public BimUser getSender() {
@@ -602,6 +663,7 @@ class BimUserList extends BimData{
         user = new BimUser("Tom", 123456, R.drawable.send_tmp);
         String[] names = {"张二狗","张三","李四","王五","赵六","柳宗元","陶渊明","李白","杜甫","李商隐","战德臣","战神"};
         Random random = new Random();
+        Log.d(TAG, "initForDebug: image id: " + R.drawable.receive_tmp);
         for(String name : names){
             BimUser friend = new BimUser(name,random.nextInt(),R.drawable.receive_tmp);
             friend.setType(BimUser.FRIEND);

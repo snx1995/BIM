@@ -11,26 +11,33 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppMaterialDesign">
-        <activity android:name=".LauncherActivity"
-            android:theme="@style/LauncherActivityTheme"/>
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".LauncherActivity"
+            android:theme="@style/LauncherActivityTheme">
+
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/SystemStatusBarTransparent" />
         <activity android:name=".MessageActivity" />
-        <activity android:name=".AppTestActivity">
+        <activity android:name=".AppTestActivity"></activity>
+        <activity
+            android:name=".AddressBookActivity"
+            android:theme="@style/SystemStatusBarTransparent" />
+        <activity
+            android:name=".InfoDetailActivity"
+            android:theme="@style/SystemStatusBarTransparent" />
+        <activity android:name=".SearchActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/LoginActivityTheme" />
+        <activity android:name=".TabLayoutTestActivity"></activity>
+        <activity android:name=".SocketTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".AddressBookActivity" />
-        <activity
-            android:name=".InfoDetailActivity"
-            android:theme="@style/SystemStatusBarTransparent" />
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".LoginActivity"
-            android:theme="@style/LoginActivityTheme"
-            >
-
         </activity>
     </application>
 

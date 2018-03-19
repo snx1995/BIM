@@ -90,7 +90,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-
+    <Button
+        android:id="@+id/test_nav_test"
+        android:background="@color/colorBlueLight"
+        android:layout_marginTop="10dp"
+        android:text="Nav Test"
+        android:textSize="18sp"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

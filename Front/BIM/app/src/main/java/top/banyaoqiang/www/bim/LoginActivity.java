@@ -15,6 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 public class LoginActivity extends AppCompatActivity {
     private static final int LOGIN_FAILED = 0;
 
@@ -40,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Toast.makeText(this, getIntent().getStringExtra(LauncherActivity.INIT_INFO), Toast.LENGTH_SHORT).show();
+
         final Button login = findViewById(R.id.login_button);
         final EditText name = findViewById(R.id.login_user_id);
         final EditText password = findViewById(R.id.login_password);
@@ -55,13 +59,12 @@ public class LoginActivity extends AppCompatActivity {
                 mainLayout.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
 
-                String userName = name.getText().toString();
-                String passwd = BimSafe.passwordEncode(password.getText().toString());
+                final String userName = name.getText().toString();
+                final String passwd = BimSafe.passwordEncode(password.getText().toString());
+
                 String url = BimValues.BIM_PROJECT_SERVER_ADDRESS + "/login.php?" +
                         "name=" + userName +
                         "&password=" + passwd;
-
-                Log.d("Bim_debug", "onResponse: " + url);
                 new SendGetRequest(url){
                     @Override
                     void onResponse(String response) {
@@ -72,13 +75,28 @@ public class LoginActivity extends AppCompatActivity {
                             msg.what = LOGIN_FAILED;
                             handler.sendMessage(msg);
                         } else{
-                          BimUser user = new BimUser();
-                          user.fromJSONString(response);
-                          Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                          user.putToIntent(intent);
-                          BimFile.saveToFile(LoginActivity.this, LauncherActivity.USER_INFO_FILE_NAME, user);
-                          startActivity(intent);
-                          finish();
+                            BimUser user = new BimUser();
+                            Boolean flag = user.fromJSONString(response);
+                            if(flag){
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                user.putToIntent(intent);
+                                JSONObject json = new JSONObject();
+                                try{
+                                    json.put(LauncherActivity.USER_NAME, userName);
+                                    json.put(LauncherActivity.PASSWORD, passwd);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                                BimFile.saveToFile(LoginActivity.this, LauncherActivity.USER_INFO_FILE_NAME, json.toString());
+                                startActivity(intent);
+                                finish();
+                            }
+                            else{
+                                Toast.makeText(LoginActivity.this, LauncherActivity.RETURN_INFO_ERROR, Toast.LENGTH_SHORT).show();
+                                Message msg = new Message();
+                                msg.what = LOGIN_FAILED;
+                                handler.sendMessage(msg);
+                            }
                         }
                     }
 
@@ -87,8 +105,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 }.send();
-
             }
         });
     }
+
 }

@@ -30,7 +30,6 @@ public class AppTestActivity extends AppCompatActivity {
         detail = findViewById(R.id.test_info_detail_activity);
         findFriend = findViewById(R.id.test_find_friend);
 
-
         message.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {

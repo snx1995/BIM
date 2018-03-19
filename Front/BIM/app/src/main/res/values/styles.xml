@@ -8,14 +8,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppMaterialDesign" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppMaterialDesign" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="android:textColorPrimaryInverse">@color/colorGreyDark</item>
     </style>
 
-    <style name="SystemStatusBarTransparent" parent="AppMaterialDesign" >
-    </style>
+    <style name="SystemStatusBarTransparent" parent="AppMaterialDesign"></style>
 
     <style name="LoginActivityTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowFullscreen">true</item>
@@ -31,4 +32,8 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
+
+    <style name="AppMaterialDesign.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppMaterialDesign.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -1,6 +1,8 @@
 package top.banyaoqiang.www.bim;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.EditText;
 
@@ -121,7 +123,7 @@ class BimFile{
         }
     }
 
-    static void saveTofile(Context context, String filename, String data){
+    static void saveToFile(Context context, String filename, String data){
         saveToFile(context, filename, data, Context.MODE_PRIVATE);
     }
 
@@ -160,3 +162,48 @@ class BimFile{
     }
 }
 
+class BimDB extends SQLiteOpenHelper {
+
+    private static final String CREATE_MESSAGE_TABLE_SQL = "create table message(" +
+            "id integer primary key autoincrement," +
+            "host integer," +
+            "friend integer," +
+            "text text," +
+            "read integer," +
+            "date text," +
+            "type integer)";
+    private static final String CREATE_USER_TABLE_SQL = "create table user(" +
+            "id integer primary key," +
+            "email text," +
+            "phone text," +
+            "password text," +
+            "last_use text," +
+            "default_login integer)";
+    private static final String CREATE_ADDRESS_BOOK_SQL = "create table addressbook(" +
+            "id integer primary key autoincrement default 0," +
+            "host integer" +
+            "friend integer" +
+            "friendid integer" +
+            "name text" +
+            "image integer)";
+
+
+    private Context context;
+
+
+    public BimDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL(CREATE_MESSAGE_TABLE_SQL);
+        sqLiteDatabase.execSQL(CREATE_USER_TABLE_SQL);
+        sqLiteDatabase.execSQL(CREATE_ADDRESS_BOOK_SQL);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+    }
+}

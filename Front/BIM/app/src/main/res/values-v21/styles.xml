@@ -2,5 +2,26 @@
 <resources>
     <style name="SystemStatusBarTransparent" parent="AppMaterialDesign" >
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <style name="AppMaterialDesign.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="AppMaterialDesign.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="AppMaterialDesign" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:textColorPrimaryInverse">@color/colorGreyDark</item>
     </style>
 </resources>

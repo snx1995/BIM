@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <top.banyaoqiang.www.bim.TitleBar
-        android:id="@+id/address_book_title_bar"
+    <android.support.design.widget.CoordinatorLayout
+        android:background="@color/colorPrimary"
+        android:theme="@style/AppMaterialDesign.AppBarOverlay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/address_book_recycler"
-        android:background="@color/colorGrey"
+        <android.support.design.widget.AppBarLayout
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                app:title="@string/address_book"
+                android:id="@+id/address_book_tool_bar"
+                app:popupTheme="@style/AppMaterialDesign.PopupOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize" />
+
+        </android.support.design.widget.AppBarLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_weight="1"
+        android:id="@+id/address_book_swipe"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/address_book_recycler"
+            android:background="@color/colorGrey"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 </LinearLayout>

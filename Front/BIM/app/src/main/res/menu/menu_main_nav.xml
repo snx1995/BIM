@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/main_nav_home_page"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home_page" />
+        <item
+            android:id="@+id/main_nav_my_info"
+            android:icon="@drawable/ic_face"
+            android:title="@string/my_info" />
+        <item
+            android:id="@+id/main_nav_welfare"
+            android:icon="@drawable/ic_sun"
+            android:title="@string/welfare" />
+    </group>
+
+    <item android:title="@string/system">
+        <menu>
+            <item
+                android:id="@+id/main_nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/settings" />
+            <item
+                android:id="@+id/main_nav_about_bim"
+                android:icon="@drawable/ic_cloud"
+                android:title="@string/about_bim" />
+            <item
+                android:id="@+id/main_nav_feedback"
+                android:icon="@drawable/ic_feedback"
+                android:title="@string/feedback" />
+            <item
+                android:id="@+id/main_nav_update"
+                android:icon="@drawable/ic_update"
+                android:title="@string/check_update" />
+            <item
+                android:id="@+id/main_nav_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="@string/logout" />
+        </menu>
+    </item>
+
+</menu>

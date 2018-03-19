@@ -1,49 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
-    <android.support.v7.widget.RecyclerView
-        android:background="@color/colorGrey"
-        android:id="@+id/main_recycler"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp" />
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
     <LinearLayout
         android:background="@color/colorPrimary"
-        style="?buttonBarStyle"
+        android:paddingTop="20dp"
+        android:orientation="vertical"
+        android:theme="@style/AppMaterialDesign.AppBarOverlay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/main_clear_message"
-            style="?buttonBarButtonStyle"
-            android:text="@string/clear_message"
-            android:textColor="@color/colorWhite"
+        <include
+            android:id="@+id/main_tab_include"
+            layout="@layout/include_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
+
+        <android.support.v4.view.ViewPager
+            android:background="@color/colorGrey"
+            android:id="@+id/main_tab_view_pager"
             android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
 
-        <Button
-            android:id="@+id/main_address_book"
-            style="?buttonBarButtonStyle"
-            android:text="@string/address_book"
-            android:textColor="@color/colorWhite"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+        </android.support.v4.view.ViewPager>
 
-        <Button
-            android:id="@+id/main_search"
-            style="?buttonBarButtonStyle"
-            android:text="@string/search"
-            android:textColor="@color/colorWhite"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+        <android.support.design.widget.TabLayout
+            android:background="@color/colorWhite"
+            app:tabTextColor="@color/colorGreyDark"
+            android:id="@+id/main_tab_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
 
+        </android.support.design.widget.TabLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+    <android.support.design.widget.NavigationView
+        app:itemTextColor="@color/colorGreyDark"
+        android:id="@+id/main_navigation"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header_main_nav"
+        app:menu="@menu/menu_main_nav"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+
+</android.support.v4.widget.DrawerLayout>
