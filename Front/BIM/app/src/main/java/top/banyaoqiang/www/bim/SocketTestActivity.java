@@ -7,11 +7,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -19,81 +23,100 @@ import static top.banyaoqiang.www.bim.LauncherActivity.TAG;
 
 public class SocketTestActivity extends AppCompatActivity {
 
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            String clientRequest = (String) msg.obj;
-            request.setText(clientRequest);
-        }
-    };
 
     private Button start;
     private Button stop;
-    private TextView request;
-    private SocketServer server;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_socket_test);
-        request = findViewById(R.id.client_request);
         start = findViewById(R.id.start_server);
         stop = findViewById(R.id.stop_server);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                server = new SocketServer();
-                server.start();
+                Client client = new Client();
+                client.start();
             }
         });
 
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (server != null) server.stop();
+
             }
         });
 
     }
 
-    class SocketServer {
-        private ServerSocket server;
-        private BufferedReader reader;
+    class Client {
         private Socket socket;
+        EditText input;
+        Button send;
+        BufferedWriter writer;
+        BufferedReader reader;
 
-        void start(){
-            try {
-                server = new ServerSocket(54321);
-                Log.d(TAG, "SocketServer started, waiting for client..");
-                socket = server.accept();
-                Log.d(TAG, "Client " + socket.hashCode() + " connected..");
-                reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                String request = reader.readLine();
-                Message msg = new Message();
-                msg.obj = request;
-                handler.sendMessage(msg);
-            } catch (Exception e) {
-                Log.d(TAG, "start: exception " + e.getMessage());
-            } finally {
-                try {
-                    server.close();
-                    socket.close();
-                    reader.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
+        void start() {
+            input = findViewById(R.id.socket_input);
+            send = findViewById(R.id.socket_send);
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        socket = new Socket("39.106.156.178", 54321);
+                        reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        startServerResponseListener(reader);
+                        writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+                        send.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                final String text = input.getText().toString();
+                                if (text.length()>0) {
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            try {
+                                                writer.write(text + "\n");
+                                                writer.flush();
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }).start();
+                                }
+                            }
+                        });
+
+                    } catch (Exception e) {
+                        Log.d(TAG, "start: " + e.getMessage());
+                    }
                 }
-            }
+            }).start();
         }
-        void stop(){
 
-            try {
-                if (socket != null) socket.close();
-                if (reader != null) reader.close();
-                if (server != null) server.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        private void startServerResponseListener(final BufferedReader reader) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        String text;
+                        while ((text = reader.readLine()) != null) {
+                            final String textFinal = text;
+                            Log.d(TAG, "run: from server: " +text);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(SocketTestActivity.this, textFinal, Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
         }
     }
 }

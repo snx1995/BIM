@@ -4,11 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/client_request"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <Button
         android:text="START SERVER"
         android:id="@+id/start_server"
@@ -20,5 +15,17 @@
         android:id="@+id/stop_server"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <EditText
+        android:inputType="text"
+        android:id="@+id/socket_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="@string/send"
+        android:id="@+id/socket_send"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
