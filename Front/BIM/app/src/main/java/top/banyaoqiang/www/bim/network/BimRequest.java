@@ -14,7 +14,6 @@ public class BimRequest implements Acceptable {
     private String body = "this is a default body just for debug";
     private String connect = CONNECT_CLOSE;
 
-
     public Map<String, String> mapBody() throws Exception {
         if (!body.matches(MAP_BODY_REGEX)) throw new Exception("request body can not convert to map.");
         String[] params = body.split("[=&]");
